@@ -23,7 +23,14 @@ namespace DotNetCoreConsoleApp
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables()
                 .Build();
+
+            //services.AddOptions();
+            services.Configure<MySettings>(appsettingsConfig.GetSection("MySettings"));
+            //appsettingsConfig.GetSection("MySettings").Get<MySettings>();
+
             services.AddSingleton<IConfiguration>(appsettingsConfig);
+
+            
 
             //logging
             Log.Logger = new LoggerConfiguration()
